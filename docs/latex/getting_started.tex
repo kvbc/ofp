@@ -1,0 +1,34 @@
+The following diagram shows the relation between modules and the flow of information between them.
+
+
+
+\DoxyHorRuler{0}
+\hypertarget{getting_started_autotoc_md4}{}\doxysection{Arguments}\label{getting_started_autotoc_md4}
+Arguments included in \mbox{\hyperlink{structofp__state__s_a071aef17eb16bbe0d157226e94764ab9}{ofp\+\_\+state\+\_\+s\+::udal}} ({\bfseries{UDAL}}) are called {\bfseries{UDA}} (User-\/\+Defined Argument), ~\newline
+ but arguments inputted in the command-\/line are called {\bfseries{UIA}} (User-\/\+Inputed Argument).
+
+\DoxyHorRuler{0}
+\hypertarget{getting_started_autotoc_md5}{}\doxysection{Options}\label{getting_started_autotoc_md5}
+Options are either \href{argument_8h.html\#af82303803d7ccdedb90b343ba5316a59aacf611661ed01b51ba6328e589e6f1da}{\texttt{ Double-\/\+UIA}} ({\bfseries{DUIA}}) or \href{argument_8h.html\#af82303803d7ccdedb90b343ba5316a59a1fc4a8c449a1d725043d6abc7f64847f}{\texttt{ Single-\/\+UIA}} ({\bfseries{SUIA}}).
+
+{\bfseries{DUIA}} options consist of two UIA, first one is the UDA identifier and the second one is the UDA value. \begin{quote}
+{\ttfamily /option value} \end{quote}
+{\bfseries{SUIA}} options consist of one UIA, including the UDA identifier and the UDA value. \begin{quote}
+{\ttfamily /optionvalue} \end{quote}
+\DoxyHorRuler{0}
+\hypertarget{getting_started_autotoc_md6}{}\doxysection{State}\label{getting_started_autotoc_md6}
+The OFP state contains 3 major argument lists.
+\begin{DoxyItemize}
+\item \href{structofp__state__s.html\#a071aef17eb16bbe0d157226e94764ab9}{\texttt{ UDA List}} ({\bfseries{UDAL}})
+\begin{DoxyItemize}
+\item User-\/\+Defined Argument List is being filled by the \mbox{\hyperlink{ofp_8h_aa498e991473d0bdf1f688320ae9fe020}{ofp\+\_\+argument\+\_\+register}} function
+\end{DoxyItemize}
+\item \href{structofp__state__s.html\#a23da6f10439a676b12fa04ce189b89a6}{\texttt{ Unknown UIA List}} ({\bfseries{UUIAL}})
+\begin{DoxyItemize}
+\item Unknown User-\/\+Inputted Argument List contains undefined UIA
+\end{DoxyItemize}
+\item \href{structofp__state__s.html\#ae433476a606294aac88275d4cef7658f}{\texttt{ Non-\/\+Argument List}} ({\bfseries{NAL}})
+\begin{DoxyItemize}
+\item Non-\/\+Argument List contains UIA not starting with the specified \href{structofp__state__s.html\#a33937ce854d969715331caec715cce1e}{\texttt{ prefix}} 
+\end{DoxyItemize}
+\end{DoxyItemize}

@@ -1,0 +1,70 @@
+\hypertarget{argument_8c}{}\doxysection{argument.\+c File Reference}
+\label{argument_8c}\index{argument.c@{argument.c}}
+
+
+Argument manipulation.  
+
+
+{\ttfamily \#include \char`\"{}mem.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}state.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}argument.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+ofp\+\_\+argument $\ast$ \mbox{\hyperlink{argument_8c_a2b673bfb5b01aeaf2481ca17c7b3a7fd}{ofp\+\_\+argument\+\_\+register}} (ofp\+\_\+state $\ast$S, ofp\+\_\+argument\+\_\+type t, ofp\+\_\+argument\+\_\+priority prty, int r, \mbox{\hyperlink{ofp_8h_a6689bb841950fd6f2860e75abd552e69}{ofp\+\_\+\+Cfunction}} ef, char $\ast$id, ofp\+\_\+uint len, char $\ast$desc)
+\item 
+void \mbox{\hyperlink{argument_8c_ac5550605b873bfa5ac2177013c0f2317}{ofp\+\_\+argument\+\_\+error\+\_\+push}} (ofp\+\_\+state $\ast$S, ofp\+\_\+argument $\ast$arg, ofp\+\_\+errorcode ec)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Argument manipulation. 
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{argument_8c_ac5550605b873bfa5ac2177013c0f2317}\label{argument_8c_ac5550605b873bfa5ac2177013c0f2317}} 
+\index{argument.c@{argument.c}!ofp\_argument\_error\_push@{ofp\_argument\_error\_push}}
+\index{ofp\_argument\_error\_push@{ofp\_argument\_error\_push}!argument.c@{argument.c}}
+\doxysubsubsection{\texorpdfstring{ofp\_argument\_error\_push()}{ofp\_argument\_error\_push()}}
+{\footnotesize\ttfamily void ofp\+\_\+argument\+\_\+error\+\_\+push (\begin{DoxyParamCaption}\item[{ofp\+\_\+state $\ast$}]{S,  }\item[{ofp\+\_\+argument $\ast$}]{arg,  }\item[{ofp\+\_\+errorcode}]{ec }\end{DoxyParamCaption})}
+
+Push an error of code \char`\"{}ec\char`\"{} concerning argument \char`\"{}arg\char`\"{} onto the error stack.
+
+
+\begin{DoxyParams}{Parameters}
+{\em S} & -\/ OFP state \\
+\hline
+{\em arg} & -\/ argument \\
+\hline
+{\em ec} & -\/ error code \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{argument_8c_a2b673bfb5b01aeaf2481ca17c7b3a7fd}\label{argument_8c_a2b673bfb5b01aeaf2481ca17c7b3a7fd}} 
+\index{argument.c@{argument.c}!ofp\_argument\_register@{ofp\_argument\_register}}
+\index{ofp\_argument\_register@{ofp\_argument\_register}!argument.c@{argument.c}}
+\doxysubsubsection{\texorpdfstring{ofp\_argument\_register()}{ofp\_argument\_register()}}
+{\footnotesize\ttfamily ofp\+\_\+argument$\ast$ ofp\+\_\+argument\+\_\+register (\begin{DoxyParamCaption}\item[{ofp\+\_\+state $\ast$}]{S,  }\item[{ofp\+\_\+argument\+\_\+type}]{t,  }\item[{ofp\+\_\+argument\+\_\+priority}]{prty,  }\item[{int}]{r,  }\item[{\mbox{\hyperlink{ofp_8h_a6689bb841950fd6f2860e75abd552e69}{ofp\+\_\+\+Cfunction}}}]{ef,  }\item[{char $\ast$}]{id,  }\item[{ofp\+\_\+uint}]{len,  }\item[{char $\ast$}]{desc }\end{DoxyParamCaption})}
+
+Register a new argument.
+
+
+\begin{DoxyParams}{Parameters}
+{\em S} & -\/ OFP state \\
+\hline
+{\em t} & -\/ argument type \\
+\hline
+{\em prty} & -\/ parsing priority \\
+\hline
+{\em r} & -\/ required flag \\
+\hline
+{\em ef} & -\/ error function \\
+\hline
+{\em id} & -\/ identifier \\
+\hline
+{\em len} & -\/ identifier\textquotesingle{}s length \\
+\hline
+{\em desc} & -\/ description \\
+\hline
+\end{DoxyParams}

@@ -1,0 +1,127 @@
+
+\begin{DoxyItemize}
+\item \mbox{\hyperlink{text_to_number}{Text to Number}} 
+\end{DoxyItemize}\hypertarget{text_to_number}{}\doxysection{Text to Number}\label{text_to_number}
+A little example of the \mbox{\hyperlink{option_8c_a3c103790c48ae98fc3c06b07150d0099}{ofp\+\_\+option\+\_\+enumval}} function and error handling.
+
+\begin{quote}
+{\ttfamily Usage\+: $<$exe$>$ /txt $<$one-\/ten$>$} \end{quote}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{/* OFP headers */}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{ofp_8h}{ofp.h}}"{}}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{error_8h}{error.h}}"{}}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{state_8h}{state.h}}"{}}}
+\DoxyCodeLine{ }
+\DoxyCodeLine{\textcolor{comment}{/* C headers */}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include <stdio.h>}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include <stdlib.h>}}
+\DoxyCodeLine{ }
+\DoxyCodeLine{ }
+\DoxyCodeLine{\textcolor{comment}{/*}}
+\DoxyCodeLine{\textcolor{comment}{ * UDA error handling}}
+\DoxyCodeLine{\textcolor{comment}{ */}}
+\DoxyCodeLine{\textcolor{keywordtype}{void} arg\_error (ofp\_argument *arg, ofp\_errorcode ec)}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    printf(\textcolor{stringliteral}{"{}ofp: error for arg \(\backslash\)"{}\%s\(\backslash\)"{}: "{}}, arg-\/>id);}
+\DoxyCodeLine{    \textcolor{keywordflow}{switch}(ec)}
+\DoxyCodeLine{    \{}
+\DoxyCodeLine{    \textcolor{keywordflow}{case} \mbox{\hyperlink{error_8h_a14dbda419d8385fc6afcda74596212df}{OFP\_ERR\_ARG\_REQ}}:}
+\DoxyCodeLine{        printf(\textcolor{stringliteral}{"{}argument required"{}});}
+\DoxyCodeLine{        \textcolor{keywordflow}{break};}
+\DoxyCodeLine{    \textcolor{keywordflow}{case} \mbox{\hyperlink{error_8h_abc6878c78ecc3f961eaca0c254876972}{OFP\_ERR\_ARG\_NOVAL}}:}
+\DoxyCodeLine{        printf(\textcolor{stringliteral}{"{}argument requires value"{}});}
+\DoxyCodeLine{        \textcolor{keywordflow}{break};}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{    puts(\textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{ }
+\DoxyCodeLine{ }
+\DoxyCodeLine{\textcolor{comment}{/*}}
+\DoxyCodeLine{\textcolor{comment}{ * Main program entry}}
+\DoxyCodeLine{\textcolor{comment}{ */}}
+\DoxyCodeLine{\textcolor{keywordtype}{int} main (\textcolor{keywordtype}{int} argc, \textcolor{keywordtype}{char} **argv)}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{    \textcolor{comment}{/*}}
+\DoxyCodeLine{\textcolor{comment}{     * Allocate a new state with the following properites:}}
+\DoxyCodeLine{\textcolor{comment}{     * default parsing priority : last}}
+\DoxyCodeLine{\textcolor{comment}{     * maximum argument count   : 1}}
+\DoxyCodeLine{\textcolor{comment}{     */}}
+\DoxyCodeLine{    ofp\_state *S = \mbox{\hyperlink{ofp_8h_a8d0ded6af241b50b21d8016e42d2fff8}{ofp\_state\_new}}(argv + 1, argc -\/ 1, OFP\_ARG\_PRTY\_LAST, 1);}
+\DoxyCodeLine{    }
+\DoxyCodeLine{    \textcolor{comment}{/*}}
+\DoxyCodeLine{\textcolor{comment}{     * Allocating the state has failed,}}
+\DoxyCodeLine{\textcolor{comment}{     * handle an fatal "{}out of memory"{} error}}
+\DoxyCodeLine{\textcolor{comment}{     */}}
+\DoxyCodeLine{    \textcolor{keywordflow}{if}(S == NULL)}
+\DoxyCodeLine{    \{}
+\DoxyCodeLine{        printf(\textcolor{stringliteral}{"{}ofp: fatal error: out of memory"{}});}
+\DoxyCodeLine{        \textcolor{keywordflow}{return} EXIT\_FAILURE;}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{comment}{/* UDA "{}txt"{} */}}
+\DoxyCodeLine{    ofp\_argument *arg\_txt;}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{comment}{/*}}
+\DoxyCodeLine{\textcolor{comment}{     * In case of an fatal error,}}
+\DoxyCodeLine{\textcolor{comment}{     * output the error code and}}
+\DoxyCodeLine{\textcolor{comment}{     * clean up the application}}
+\DoxyCodeLine{\textcolor{comment}{     */}}
+\DoxyCodeLine{    \mbox{\hyperlink{ofp_8h_a4518ace88daadfa8f25d07657b626068}{ofp\_on\_ferror}}(S)}
+\DoxyCodeLine{    \{}
+\DoxyCodeLine{        printf(\textcolor{stringliteral}{"{}ofp: fatal error: 0x\%02X\(\backslash\)n"{}}, S-\/>ferr);}
+\DoxyCodeLine{        \textcolor{keywordflow}{goto} clean\_up;}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{ }
+\DoxyCodeLine{    \textcolor{comment}{/*}}
+\DoxyCodeLine{\textcolor{comment}{     * Register an new argument for the state "{}S"{} with the following properties:}}
+\DoxyCodeLine{\textcolor{comment}{     * arg type          : double-\/argument option}}
+\DoxyCodeLine{\textcolor{comment}{     * parsing priority  : first}}
+\DoxyCodeLine{\textcolor{comment}{     * required          : yes}}
+\DoxyCodeLine{\textcolor{comment}{     * error function    : "{}arg\_error"{}}}
+\DoxyCodeLine{\textcolor{comment}{     * identifier        : "{}txt"{}}}
+\DoxyCodeLine{\textcolor{comment}{     * identifier length : 3}}
+\DoxyCodeLine{\textcolor{comment}{     * description       : none}}
+\DoxyCodeLine{\textcolor{comment}{     */}}
+\DoxyCodeLine{    arg\_txt = \mbox{\hyperlink{argument_8c_a2b673bfb5b01aeaf2481ca17c7b3a7fd}{ofp\_argument\_register}}(S, \mbox{\hyperlink{argument_8h_ad22adb24f9b8fa87fc7f048eed87646a}{OFP\_ARG\_TYPE\_DUIA\_OPTION}}, \mbox{\hyperlink{argument_8h_ab68f8cfe6e00fb54c079b41b5d374047}{OFP\_ARG\_PRTY\_FIRST}}, OFP\_ARG\_REQUIRED, arg\_error, \textcolor{stringliteral}{"{}txt"{}}, 3, NULL);}
+\DoxyCodeLine{    \mbox{\hyperlink{ofp_8h_aa0cf6c2c7523bf985d8ebccf4bd9e82f}{ofp\_parser\_parse}}(S);}
+\DoxyCodeLine{ }
+\DoxyCodeLine{    \textcolor{comment}{/*}}
+\DoxyCodeLine{\textcolor{comment}{     * If any error has been}}
+\DoxyCodeLine{\textcolor{comment}{     * encountered, print the usage}}
+\DoxyCodeLine{\textcolor{comment}{     * and clean up the application}}
+\DoxyCodeLine{\textcolor{comment}{     */}}
+\DoxyCodeLine{    \textcolor{keywordflow}{if}(\mbox{\hyperlink{ofp_8h_acc792b8f3e75c8e6bfeaf87b356f0335}{ofp\_any\_error}}(S))}
+\DoxyCodeLine{    \{}
+\DoxyCodeLine{        printf(\textcolor{stringliteral}{"{}usage: \%s /txt <one-\/ten>"{}}, *argv);}
+\DoxyCodeLine{        \textcolor{keywordflow}{goto} clean\_up;}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{comment}{/*}}
+\DoxyCodeLine{\textcolor{comment}{     * There are no errors,}}
+\DoxyCodeLine{\textcolor{comment}{     * print the input and}}
+\DoxyCodeLine{\textcolor{comment}{     * return the "{}enumval"{} of arg "{}txt"{}}}
+\DoxyCodeLine{\textcolor{comment}{     */}}
+\DoxyCodeLine{    printf(\textcolor{stringliteral}{"{}input: \%s\(\backslash\)n"{}}, arg\_txt-\/>v.o);}
+\DoxyCodeLine{    printf(\textcolor{stringliteral}{"{}output: \%d\(\backslash\)n"{}},}
+\DoxyCodeLine{        \mbox{\hyperlink{ofp_8h_a470e266130f42408ac37e97d2ae86693}{ofp\_option\_enumval}}(arg\_txt, 10,}
+\DoxyCodeLine{                           \textcolor{stringliteral}{"{}zero"{}},  4, 0,}
+\DoxyCodeLine{                           \textcolor{stringliteral}{"{}one"{}},   3, 1,}
+\DoxyCodeLine{                           \textcolor{stringliteral}{"{}two"{}},   3, 2,}
+\DoxyCodeLine{                           \textcolor{stringliteral}{"{}three"{}}, 5, 3,}
+\DoxyCodeLine{                           \textcolor{stringliteral}{"{}four"{}},  4, 4,}
+\DoxyCodeLine{                           \textcolor{stringliteral}{"{}five"{}},  4, 5,}
+\DoxyCodeLine{                           \textcolor{stringliteral}{"{}six"{}},   3, 6,}
+\DoxyCodeLine{                           \textcolor{stringliteral}{"{}seven"{}}, 5, 7,}
+\DoxyCodeLine{                           \textcolor{stringliteral}{"{}eight"{}}, 5, 8,}
+\DoxyCodeLine{                           \textcolor{stringliteral}{"{}nine"{}},  4, 9,}
+\DoxyCodeLine{                           \textcolor{stringliteral}{"{}ten"{}},   3, 10));}
+\DoxyCodeLine{ }
+\DoxyCodeLine{clean\_up:}
+\DoxyCodeLine{    \mbox{\hyperlink{ofp_8h_a008b322ca491ce11390df6fbba92cab0}{ofp\_state\_free}}(S);}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keywordflow}{return} EXIT\_SUCCESS;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+ 

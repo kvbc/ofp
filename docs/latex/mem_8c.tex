@@ -1,0 +1,64 @@
+\hypertarget{mem_8c}{}\doxysection{mem.\+c File Reference}
+\label{mem_8c}\index{mem.c@{mem.c}}
+
+
+Memory helpers.  
+
+
+{\ttfamily \#include \char`\"{}ofp.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}mem.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}state.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}error.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void $\ast$ \mbox{\hyperlink{mem_8c_ad3c1a874f01c320bc70bf5119842fd81}{ofp\+\_\+memory\+\_\+allocate}} (ofp\+\_\+state $\ast$S, ofp\+\_\+uint size)
+\item 
+void \mbox{\hyperlink{mem_8c_a89297ec7ab25ff5ccfa96796fa1cb49b}{ofp\+\_\+memory\+\_\+array\+\_\+admissible}} (ofp\+\_\+state $\ast$S, ofp\+\_\+uint top, ofp\+\_\+uint limit, ofp\+\_\+errorcode ferr)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Memory helpers. 
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{mem_8c_ad3c1a874f01c320bc70bf5119842fd81}\label{mem_8c_ad3c1a874f01c320bc70bf5119842fd81}} 
+\index{mem.c@{mem.c}!ofp\_memory\_allocate@{ofp\_memory\_allocate}}
+\index{ofp\_memory\_allocate@{ofp\_memory\_allocate}!mem.c@{mem.c}}
+\doxysubsubsection{\texorpdfstring{ofp\_memory\_allocate()}{ofp\_memory\_allocate()}}
+{\footnotesize\ttfamily void$\ast$ ofp\+\_\+memory\+\_\+allocate (\begin{DoxyParamCaption}\item[{ofp\+\_\+state $\ast$}]{S,  }\item[{ofp\+\_\+uint}]{size }\end{DoxyParamCaption})}
+
+Allocates \char`\"{}size\char`\"{} bytes of uninitialized storage. ~\newline
+If allocation succeds, return a pointer to the beggining of allocated memory. ~\newline
+On failure throw an fatal \char`\"{}out of memory\char`\"{} error.
+
+
+\begin{DoxyParams}{Parameters}
+{\em S} & -\/ OFP state \\
+\hline
+{\em size} & -\/ number of bytes to allocate \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{mem_8c_a89297ec7ab25ff5ccfa96796fa1cb49b}\label{mem_8c_a89297ec7ab25ff5ccfa96796fa1cb49b}} 
+\index{mem.c@{mem.c}!ofp\_memory\_array\_admissible@{ofp\_memory\_array\_admissible}}
+\index{ofp\_memory\_array\_admissible@{ofp\_memory\_array\_admissible}!mem.c@{mem.c}}
+\doxysubsubsection{\texorpdfstring{ofp\_memory\_array\_admissible()}{ofp\_memory\_array\_admissible()}}
+{\footnotesize\ttfamily void ofp\+\_\+memory\+\_\+array\+\_\+admissible (\begin{DoxyParamCaption}\item[{ofp\+\_\+state $\ast$}]{S,  }\item[{ofp\+\_\+uint}]{top,  }\item[{ofp\+\_\+uint}]{limit,  }\item[{ofp\+\_\+errorcode}]{ferr }\end{DoxyParamCaption})}
+
+Check if an array with the given top has hit the limit. ~\newline
+If it has, throw an fatal error of code \char`\"{}ferr\char`\"{}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em S} & -\/ OFP state \\
+\hline
+{\em top} & -\/ array\textquotesingle{}s top \\
+\hline
+{\em limit} & -\/ array\textquotesingle{}s limit \\
+\hline
+{\em ferr} & -\/ error code \\
+\hline
+\end{DoxyParams}
