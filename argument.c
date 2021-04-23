@@ -39,8 +39,8 @@ ofp_argument *ofp_argument_register
 	char *desc
 )
 {
-	ofp_memory_array_admissible(S, S->uuialt, S->maxuda, OFP_FERR_AL_MAX);
-	ofp_argument *arg = S->udal + S->uuialt++;
+	ofp_memory_array_admissible(S, S->udalt, S->maxuda, OFP_FERR_AL_MAX);
+	ofp_argument *arg = S->udal + S->udalt++;
 
 	arg->i = 0;
 	arg->r = r;
