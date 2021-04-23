@@ -56,10 +56,14 @@ ofp_state *ofp_state_new (char **argv, int argc, ofp_argument_priority prty, ofp
 	S->nal   = (char**)			ofp_memory_allocate(S, sizeof(*S->nal) * argc);
 	S->err   = (ofp_error*)		ofp_memory_allocate(S, sizeof(*S->err) * maxuda);
 
+	/* Initialize counts */
+	S->nac   = 0;
+	S->uuiac = 0;
+
 	/* Initialize the top indices */
-	S->udalt = 0;
+	S->udalt  = 0;
 	S->uuialt = 0;
-	S->nalt = 0;
+	S->nalt   = 0;
 	S->errtop = 0;
 
 	/* Initialize defaults */
