@@ -34,13 +34,15 @@ static void init_lists (ofp_state *S)
 		char *arg = S->argv[argi];
 		if(arg[0] == S->p)
 		{
-			/* push to UL */
+			/* push to UUIAL */
+			S->uuiac++;
 			ofp_memory_array_push(S->nal, S->nalt, NULL);
 			ofp_memory_array_push(S->uuial, S->uuialt, arg + 1);
 		}
 		else
 		{
 			/* push to NAL */
+			S->nac++;
 			ofp_memory_array_push(S->uuial, S->uuialt, NULL);
 			ofp_memory_array_push(S->nal, S->nalt, arg);
 		}
@@ -153,7 +155,7 @@ void ofp_parser_parse (ofp_state *S)
 						}
 						else if(a->t == OFP_ARG_TYPE_DUIA_OPTION)
 						{
-							/* double-argument option */
+							/* double-UIA option */
 							if(argi + 1 < S->argc)
 							{
 								a->v.o = S->argv[argi + 1];
@@ -168,7 +170,7 @@ void ofp_parser_parse (ofp_state *S)
 					{
 						if(a->t == OFP_ARG_TYPE_SUIA_OPTION)
 						{
-							/* single-argument option */
+							/* single-UIA option */
 							a->v.o = arg + 1 + a->idlen;
 						}
 						else
@@ -181,7 +183,7 @@ void ofp_parser_parse (ofp_state *S)
 				exists:
 					/*
 					 * Argument is known,
-					 * update the UL
+					 * update the UUIAL
 					 */
 					S->uuial[argi] = NULL;
 				}
