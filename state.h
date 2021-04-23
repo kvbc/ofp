@@ -33,6 +33,9 @@ struct ofp_state_s
 	ofp_uint nalt;					///< NAL   top
 	ofp_uint errtop;				///< error stack top
 
+	int uuiac;						///< UUIA count
+	int nac;						///< NA count
+
 	ofp_argument *udal;				///< UDA List (UDAL)
 	char **uuial;					///< Unknown UIA List (UUIAL)
 	char **nal;						///< Non-Argument List (NAL)
