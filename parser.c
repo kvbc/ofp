@@ -97,7 +97,7 @@ void ofp_parser_parse (ofp_state *S)
 	/*
 	 * Iterate through user-defined arguments
 	 */
-	for(int ali = 0; ali < S->uuialt; ++ali)
+	for(int ali = 0; ali < S->udalt; ++ali)
 	{
 		ofp_argument *a = S->udal + ali;
 
