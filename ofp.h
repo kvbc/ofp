@@ -45,7 +45,7 @@
 	/** @brief
 	 * API's visibility and/or linkage
 	 */
-	#if defined(_MSC_VER)
+	#if (defined _MSC_VER || defined __MINGW32__)
 	    #define OFP_API __declspec(dllexport)
 	#elif defined(__GNUC__)
 	    #define OFP_API __attribute__((visibility("default")))
